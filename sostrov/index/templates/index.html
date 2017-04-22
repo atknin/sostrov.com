@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{%load static%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Солнечный остров</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Favicons
+    ================================================== -->
+<link rel="shortcut icon" href="{% static "index/img/favicon.png"%}" type="image/x-icon">
+<link rel="apple-touch-icon" href="{% static "index/img/apple-touch-icon.png"%}">
+<link rel="apple-touch-icon" sizes="72x72" href="{% static "index/img/apple-touch-icon-72x72.png"%}">
+<link rel="apple-touch-icon" sizes="114x114" href="{% static "index/img/apple-touch-icon-114x114.png"%}">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"  href="{% static "index/css/bootstrap.css"%}">
+<link rel="stylesheet" type="text/css" href="{% static "index/css/style_slider.css"%}">
+<link rel="stylesheet" type="text/css" href="{% static "index/fonts/font-awesome/css/font-awesome.css"%}">
+
+<!-- Stylesheet
+    ================================================== -->
+<link rel="stylesheet" type="text/css"  href="{% static "index/css/style.css"%}">
+<link rel="stylesheet" type="text/css" href="{% static "index/css/prettyPhoto.css"%}">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300" rel="stylesheet" type="text/css">
+
+<!-- <script type="text/javascript" src="{% static "index/js/modernizr.custom.js" %}"></script> -->
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+
+  <div class="container" style="width: 100%;"> 
+    <div class="col-md-5 collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-left">
+      <li><a href="#page-top" class="page-scroll">Главная</a></li>
+      <li><a href="#document" class="page-scroll">Документы кооператива</a></li>
+      <!-- <li><a href="#about" class="page-scroll">Новости</a></li> -->
+      <!-- <li><a href="#services" class="page-scroll">Концепции развития</a></li> -->
+      <li><a href="#" id="logout" class="page-scroll1" ;">выход</a></li>
+    </ul>
+  </div>
+  <div class="col-md-6 navbar-header" style="float: right;">
+<!--    <a href="https://vk.com/club140770902" style="margin-left: 250px;"> <img src="{% static "index/img/vk.png"%}"  alt=""></a> <br> -->
+      <a class="navbar-brand page-scroll" href="#page-top">
+        <i class="fa fa-phone" aria-hidden="True" style="color:#614e4e;"> +7(495)150-77-79</i> 
+        <i class="fa fa-phone" aria-hidden="True" style="color:#614e4e;"> +7(909)158-21-00</i>
+
+        <i class="fa fa-phone" aria-hidden="True" style="color:#614e4e;"> +7(926)950-40-48</i> 
+        <!-- <i class="fa fa-vk" aria-hidden="True" style="color:#614e4e;"> https://vk.com/club140770902</i> -->
+        <i class="fa fa-envelope" aria-hidden="True" style="color:#614e4e;"> koop.sostrov@mail.ru</i> 
+      </a>
+      <a href="https://vk.com/club140770902" style="margin-left: 270px; margin-top: 0px;"> <img src="{% static "index/img/vk.png"%}"  alt=""></a>
+      
+   </div>
+          <!-- Brand and toggle get grouped for better mobile display -->
+
+ 
+    <!-- /.navbar-collapse  -->
+  </div>
+  <!-- /.container-fluid  -->
+</nav>
+ <!-- Header -->
+<header id="header">
+  <div class="intro text-center">
+    <div class="overlay">
+      <div class="container">
+        <div class="row">
+          <div class="intro-text">
+            <span><h1>Кооператив <br> "солнечный остров"</h1></span> <br>
+            <span>На данном сайте будут выкладываться: <br>
+            документы, информация о событиях и т.п</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+                            <!-- documen -->
+<div id="document">
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2 section-title text-center">
+      <h2>Документы кооператива</h2>
+    </div>
+    <div class="row">
+      {%for group in groups%}
+        <div class="col-sm-7 col-md-5 col-lg-5 web" style="height: 310px; overflow-y: auto; overflow-x: hidden;">
+          <div class="portfolio-item">
+            <h3 style="margin-top: 20px;">{{group.name}}</h3>
+            <div class="hover-bg" style = "float: left;"> 
+              {%for doc in docs%}
+                {%if doc.group ==  group%}
+                  <br>
+                   {%if doc.file%}
+                     <a href="{{doc.file.url}}" target="_blank" style="">
+                       <span class="label label-default" >{{doc.name}} </span> <br>
+                     </a>
+                  {%endif%}
+                {%endif%}
+              {%endfor%}
+            </div>
+          </div>
+        </div>
+      {%endfor%}
+    </div>
+  </div>
+</div>
+<!-- About Section НОВОСТИ!-->
+<!-- <div id="about">
+    <div class="container">
+        <div style="text-align: center; padding-top: 25px; color: black !important;"><h1>НОВОСТИ</h1></div>
+          {%for a in news%}
+        <div class="col-md-5  section-title text-center" style="text-align: left; margin-right: 50px; margin-left: 30px;">
+          <h2 style="text-align: center;">{{a.name}}</h2>
+          <p>{{a.descript}}</p>
+        </div>
+          {%endfor%}
+        {%for a in news%}
+        <div class="col-md-5  section-title text-center" style="text-align: left; margin-right:50px; margin-left: 30px;">
+          <h2 style="text-align: center;">{{a.name}}</h2>
+          <p>{{a.descript}}</p>
+        </div>
+          {%endfor%}
+    </div>
+</div> -->
+
+
+<div id="footer">
+  <div class="container text-center">
+    <div class="fnav">
+      <p>
+      2017 Кооператив "Солнечный остров" <br>
+      Вы: {{user.first_name}} {{user.last_name}}
+       <!-- Московская область,
+      г. Мытище, ул. Стрелковая д.21, пом. XVI -->
+      </p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="{% static "index/js/jquery.1.11.1.js"%}"></script> 
+<script type="text/javascript" src="{% static "index/js/bootstrap.js"%}"></script> 
+<script type="text/javascript" src="{% static "index/js/jquery.prettyPhoto.js"%}"></script> 
+<script type="text/javascript" src="{% static "index/js/main.js"%}"></script>
+<script type="text/javascript" src="{% static "index/js/js_slider.js"%}"></script>
+<!-- <script type="text/javascript" src="{% static "index/js/contact_me.js"%}"></script>  -->
+<!-- <script type="text/javascript" src="{% static "index/js/jqBootstrapValidation.js"%}"></script>  -->
+<!-- <script type="text/javascript" src="{% static "index/js/jquery.isotope.js"%}"></script>  -->
+<!-- <script type="text/javascript" src="{% static "index/js/SmoothScroll.js"%}"></script>  -->
+
+<script type="text/javascript">
+  $('#logout').click(function() {
+    console.log('выход');
+    var login_dict = {'logout': 'quit' };
+    $.ajaxSetup({data: {
+      csrfmiddlewaretoken: '{{ csrf_token }}'
+    }});
+    $.post("/", login_dict ,function(data) {
+    location.reload();
+    });
+  });
+          
+          
+</script>
+</body>
+</html>
